@@ -12,17 +12,15 @@ import java.io.Serializable;
  *
  * @author weixing.yang
  * @version 1.1.0
- * @date 2019/11/21 10:23
+ * @date 2019/11/22 18:14
  */
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TimeRecordDTO implements Serializable{
+public class TimeRecordCategoryDTO implements Serializable {
 
-    private Long userId;
+    private String name;
 
     private Long categoryId;
-
-    private boolean status;
 }
