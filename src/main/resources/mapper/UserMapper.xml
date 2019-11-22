@@ -30,7 +30,7 @@
         where id = #{id,jdbcType=BIGINT}
     </delete>
 
-    <insert id="insert" parameterType="com.xing.mp.model.User">
+    <insert id="insert" parameterType="com.xing.mp.model.User" useGeneratedKeys="true"  keyProperty="id">
         insert into user (id, nick_name, real_name,
           phone, avatar_url, gender,
           openid, unionid, country,

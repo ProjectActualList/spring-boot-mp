@@ -6,10 +6,7 @@ import com.xing.mp.model.TimeRecordDTO;
 import com.xing.mp.service.TimeRecordService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,14 +27,14 @@ public class TimeRecordController {
     TimeRecordService timeRecordService;
 
     @PostMapping("/recordingTime")
-    public Response recordingTime(TimeRecordDTO timeRecordDTO){
+    public Response recordingTime(@RequestBody TimeRecordDTO timeRecordDTO){
         Response response = new Response();
         timeRecordService.recordingTime(timeRecordDTO);
         return response.success();
     }
 
     @GetMapping("/list")
-    public List<TimeRecordCategoryDTO> list(){
+    public Response list(){
         List<TimeRecordCategoryDTO> list = new ArrayList<>();
         TimeRecordCategoryDTO dto0 = new TimeRecordCategoryDTO();
         TimeRecordCategoryDTO dto1 = new TimeRecordCategoryDTO();
@@ -59,7 +56,9 @@ public class TimeRecordController {
         list.add(dto2);
         list.add(dto3);
         list.add(dto4);
-        return list;
+        Response response = new Response();
+        response.success().setResult(list);
+        return  response;
 
     }
 

@@ -21,7 +21,8 @@ public class LoginController {
     public Response login(String code) {
         log.info("微信code:{}", code);
         Response response = new Response();
-        loginService.login(code);
+        User user = loginService.login(code);
+        response.success().setResult(user);
         return response;
     }
 
@@ -29,7 +30,7 @@ public class LoginController {
     public Response findUserById() {
         Response response = new Response();
         User user = loginService.findUserById(1L);
-        response.success().setData(user);
+        response.success().setResult(user);
         return response;
     }
 

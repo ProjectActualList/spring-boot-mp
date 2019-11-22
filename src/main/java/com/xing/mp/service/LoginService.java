@@ -34,7 +34,7 @@ public class LoginService {
     }
 
 
-    public void login(String code) {
+    public User login(String code) {
         Map<String, Object> sessionMap = this.getWxSession(code);
         String openid = (String) sessionMap.get("openid");
         String unionid = (String) sessionMap.get("unionid");
@@ -45,8 +45,11 @@ public class LoginService {
         if (null == user) {
             user = User.builder().openid(openid).unionid(unionid).build();
             //  如果信息不存在，新增用户信息
-            userMapper.insert(user);
+            Long id = (Long) userMapper.insert(user);
+            user.setId(id);
+            return user;
         }
+        return user;
     }
 
     public User findUserById(Long id) {
